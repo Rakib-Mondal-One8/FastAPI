@@ -30,7 +30,8 @@ class UserVerification(BaseModel):
     password : str 
     new_password :str = Field(min_length=6)
 
-
+class UpdatePhoneNumberRequest(BaseModel):
+    phone_number: str = Field(min_length=10)
 
 @router.get("/get-user",status_code=status.HTTP_200_OK)
 async def get_user(user: user_dependency, db: db_dependency):
@@ -52,5 +53,17 @@ async def change_password(user: user_dependency, db: db_dependency, user_verific
 
     user_model.hashed_password = pwd_context.hash(user_verification.new_password)
 
+    db.add(user_model)
+    db.commit()
+
+
+@router.put("/update-phone_number",status_code=status.HTTP_204_NO_CONTENT)
+async def update_phoner_number(user:user_dependency,db:db_dependency,update_phone_number_request:UpdatePhoneNumberRequest):
+    if user is None:
+        raise HTTPException(status_code=401, detail="Authentication Failed")
+    
+    user_model = db.query(Users).filter(Users.id == user.get('id')).first()
+
+    user_model.phone_number = update_phone_number_request.phone_number
     db.add(user_model)
     db.commit()

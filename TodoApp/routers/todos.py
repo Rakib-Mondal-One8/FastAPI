@@ -66,7 +66,7 @@ async def read_todo(
         .filter(Todos.owner_id == user.get("id"))
         .first()
     )
-    if todo_model is not None:
+    if todo_model is not None: 
         return todo_model
     raise HTTPException(status_code=404, detail="Todo not found!")
 
@@ -84,7 +84,6 @@ async def create_todo(
     new_todo = Todos(**todo_request.model_dump(), owner_id=user.get("id"))
     db.add(new_todo)
     db.commit()
-    return new_todo
 
 
 @router.put("/update-todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
