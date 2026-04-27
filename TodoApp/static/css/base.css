@@ -1,0 +1,36 @@
+
+body {
+    background: #fafafa;
+    color: #33333a;
+    padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #323232;
+}
+
+.main-color {
+    background-color: #0e76a8;
+}
+
+.strike-through-td {
+    text-decoration: line-through;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.navbar a:hover {
+    color: #ffd369;
+    transition: 0.2s;
+}
+
+/* h1 {
+  color: red;
+} */
+
+
+
+

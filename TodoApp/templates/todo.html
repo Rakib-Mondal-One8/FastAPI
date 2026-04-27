@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+
+        <div class="card-header bg-primary text-white text-center rounded-top-4">
+            <h4 class="mb-0">📋 Your Todo List</h4>
+        </div>
+
+        <div class="card-body p-4">
+
+            <p class="text-muted text-center mb-4">
+                Keep track of everything you need to complete 🚀
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-center">
+
+                    <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for todo in todos %}
+
+                    {% if not todo.complete %}
+                    <tr class="pointer">
+                        <td>{{ loop.index }}</td>
+
+                        <td class="fw-semibold">
+                            {{ todo.title }}
+                        </td>
+
+                        <td>
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        </td>
+
+                        <td>
+                            <button onclick="window.location.href='edit-todo-page/{{todo.id}}'"
+                                    class="btn btn-sm btn-outline-primary">
+                                ✏️ Edit
+                            </button>
+                        </td>
+                    </tr>
+
+                    {% else %}
+                    <tr class="table-success pointer">
+                        <td>{{ loop.index }}</td>
+
+                        <td class="text-decoration-line-through text-muted">
+                            {{ todo.title }}
+                        </td>
+
+                        <td>
+                            <span class="badge bg-success">Completed</span>
+                        </td>
+
+                        <td>
+                            <button onclick="window.location.href='edit-todo-page/{{todo.id}}'"
+                                    class="btn btn-sm btn-outline-success">
+                                ✏️ Edit
+                            </button>
+                        </td>
+                    </tr>
+                    {% endif %}
+
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="add-todo" class="btn btn-lg btn-primary rounded-pill px-4">
+                    ➕ Add New Todo
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
