@@ -1,4 +1,4 @@
-        """
+"""
 FastAPI Caching — Complete Implementation
 =========================================
 Covers:
@@ -10,7 +10,7 @@ Covers:
   6. Cache invalidation
   7. Background refresh (prevents thundering herd)
 
-Install deps:
+Install deps: 
     pip install fastapi uvicorn redis[asyncio] hiredis
 """
 
